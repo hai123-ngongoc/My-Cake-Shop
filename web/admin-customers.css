@@ -1,0 +1,131 @@
+
+@import url('admin-products.css');
+
+.customer-card {
+  position: relative;
+  width: 100%;
+  height: 380px; 
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.customer-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.customer-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+.customer-card-profile-icon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background-color: #10b981; 
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 10;
+}
+
+.customer-card:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.customer-card-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 5;
+}
+
+.customer-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white; 
+}
+
+.customer-card-name {
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 0.25rem;
+}
+
+.customer-card-id {
+  font-size: 0.875rem;
+}
+
+.customer-card-actions {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  gap: 16px;
+}
+
+.customer-card-edit {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #d1a54b; 
+  color: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.customer-card-delete {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #dc2626;
+  color: white;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.customer-card-edit:hover, 
+.customer-card-delete:hover {
+  transform: scale(1.05);
+}
+
+.customer-icon {
+  width: 24px;
+  height: 24px;
+  color: #6B7280;
+}
+#edit-customer-modal,
+#delete-confirmation-modal {
+  z-index: 1000;
+}
+
+#edit-customer-modal .bg-amber-100,
+#delete-confirmation-modal .bg-yellow-50 {
+  z-index: 1001; 
+}
