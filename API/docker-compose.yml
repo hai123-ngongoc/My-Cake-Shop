@@ -1,0 +1,10 @@
+services:
+  mysql:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: product
+      MYSQL_USER: my_product
+      MYSQL_PASSWORD: my_product_pwd
