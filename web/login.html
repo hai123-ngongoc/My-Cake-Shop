@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cake Shop</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nameShop"><i><h3>MYCAKE SHOP</h3></i></div>
+    </div>
+
+    <div class="container">
+        <div class="loginBox">
+            <div class="login">
+                <form id="loginForm">
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username" placeholder="Please input your username"><br>
+
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password" placeholder="Please input your password"><br>
+
+                    <button type="submit" class="submit">Sign In</button>
+
+                    <a href="//">Forgot password?</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        async function login(e) {
+            e.preventDefault();
+            const {username: {value: username}, password: {value: password}} = e.target || {};
+
+            const response = await fetch('http://localhost:8080/v1/auth/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, password}),
+            });
+
+            const jsonResponse = await response.json();
+
+            if (jsonResponse?.ok) {
+                sessionStorage.setItem('user', JSON.stringify(jsonResponse.user));
+                window.location.href = '/login/visitor.html'; //sau khi sign in true sẽ tự động nhảy sang trang visitor.html
+            } else {
+                alert('Wrong username or password');
+            }
+        };
+
+        (function () {
+            document.getElementById('loginForm').addEventListener('submit', login);
+        })();
+    </script>
+</body>
+</html>

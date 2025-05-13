@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cake Shop</title>
+    <link rel="stylesheet" href="visitor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="menu">
+            <div class="home">
+                <a href="visitor.html"><img src="./hinh_anh/home.png"></a>
+            </div>
+            <div class="search">
+                <form class="searchBox" action="//" method="GET">
+                    <input type="text" placeholder="Search...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div class="box">
+                <!-- <a href="./login.html"><button>Sign In</button></a>
+                <a href="./register.html"><button>Register</button></a> -->
+                <span class="username">Username here</span>
+                <a href="#" id="logoutBtn">Logout</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="listProducts"></div>
+    </div>
+
+    <script type="text/javascript">
+        function displayUsername() {
+            const user = JSON.parse(sessionStorage.getItem('user'));
+            if (!user) {
+                window.location.href = '/login/login.html'; // Nếu chưa đăng nhập thì chuyển về trang login
+            }
+
+            for (const element of document.getElementsByClassName('username')) {
+                element.innerHTML = user?.name; // Hiển thị tên user vào tất cả phần tử có class 'username'
+            }
+        }
+
+        function logout(e) {
+            e.preventDefault();
+            sessionStorage.removeItem('user');
+            window.location.href = '/login/login.html';
+        }
+
+        (function () {
+            displayUsername();
+
+            document.getElementById('logoutBtn').addEventListener('click', logout);
+        })();
+    </script>
+</body>
+</html>
