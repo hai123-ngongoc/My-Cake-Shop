@@ -1,7 +1,10 @@
-const {Sequelize} = require('sequelize');
-const {database, username, password, host, port} = require('../config/database');
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../.env') });
+const { Sequelize } = require('sequelize');
+const { database, username, password, host, port } = require('../config/database');
 
-const db = new Sequelize ({ //tạo một kết nối tới cơ sở dữ liệu bằng thư viện Sequelize,
+console.log('DB Config:', { database, username, password, host, port });
+const sequelize = new Sequelize({
     dialect: 'mysql',
     database,
     username,
@@ -10,4 +13,12 @@ const db = new Sequelize ({ //tạo một kết nối tới cơ sở dữ liệu
     port,
 });
 
-module.exports = db;
+sequelize.authenticate()
+    .then(() => {
+        console.log('Connection to database established successfully.');
+    })
+    .catch((err) => {
+        console.error('Unable to connect to the database:', err);
+    });
+
+module.exports = { sequelize, Sequelize };
