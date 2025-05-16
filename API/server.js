@@ -14,6 +14,10 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, '..', 'web')));
 
+// Sử dụng main router từ app/route.js
+const mainRouter = require('./app/route');
+app.use('/', mainRouter);
+
 app.get('/products', (req, res) => {
     res.redirect('/api/products');
 });
@@ -22,7 +26,7 @@ app.get('/health-check', (req, res) => {
     res.status(200).send('OK');
 });
 
-const { models } = require('./models/init-model'); 
+const { models } = require('./models/init-model');
 const productsController = require('./app/v1/products/controller');
 
 app.get('/api/products', productsController.list);
@@ -42,6 +46,15 @@ app.get('/admin-orders', (req, res) => {
 app.get('/admin-customers', (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'web', 'admin-customers.html'));
 });
+
+app.get('/customer-products', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'web', 'customer-products.html'));
+});
+
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'web', 'login.html'));
+});
+
 
 app.use((err, req, res, next) => {
     console.error('Error:', err);
